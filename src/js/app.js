@@ -8,6 +8,7 @@ import { createCards } from './createCards';
 const form = document.getElementById('search-form');
 const container = document.getElementById('gallery');
 const loadMoreBtn = document.getElementById('load-more');
+const footer = document.getElementById('footer');
 
 let page, currentQuery, isSearched;
 
@@ -43,7 +44,25 @@ const renderUI = async (query, page) => {
   }
 };
 
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || !isSearched) return;
+
+      page++;
+      renderUI(currentQuery, page);
+    });
+  },
+  {
+    root: null,
+    rootMargin: '800px',
+    threshold: 0,
+  }
+);
+
 //events
+
+observer.observe(footer);
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -55,11 +74,6 @@ form.addEventListener('submit', e => {
 
   currentQuery = value;
   renderUI(value, page);
-});
-
-loadMoreBtn.addEventListener('click', () => {
-  page++;
-  renderUI(currentQuery, page);
 });
 
 var lightbox = new SimpleLightbox('.gallery a', {

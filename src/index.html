@@ -14,7 +14,7 @@
     <script type="module" defer src="./js/app.js"></script>
     <title>JS-HW-11</title>
   </head>
-  <body class="text-slate-700">
+  <body class="text-slate-700 min-h-screen flex flex-col">
     <nav class="border-gray-200">
       <div class="mx-auto p-4 bg-slate-200">
         <h1 class="text-4xl text-center font-bold tracking-wide my-2 mb-6">🤳 ImageBrowser</h1>
@@ -61,7 +61,7 @@
       </div>
     </nav>
     <div class="max-w-screen-2xl mx-auto">
-      <ul class="gallery list-none flex flex-wrap justify-center gap-4 my-10" id="gallery"></ul>
+      <ul class="gallery list-none flex flex-wrap gap-4 my-10 justify-center" id="gallery"></ul>
       <button
         id="load-more"
         type="button"
@@ -70,5 +70,6 @@
         Load more
       </button>
     </div>
+    <footer class="bg-slate-200 flex justify-center mt-auto" id="footer">&copy;arc4dev</footer>
   </body>
 </html>
